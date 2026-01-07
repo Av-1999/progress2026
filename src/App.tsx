@@ -12,7 +12,7 @@ function calculatePercent(): number {
   return Math.min(Math.max((passed / total) * 100, 0), 100);
 }
 
-export default function App(): JSX.Element {
+export default function App() {
   const [percent, setPercent] = useState<number>(0);
 
   useEffect(() => {

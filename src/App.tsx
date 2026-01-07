@@ -79,7 +79,8 @@ export default function App() {
 
           <p>Time already lived in 2026</p>
 
-          <p className="copyright">© crated by: av_10_99</p>
+          <p className="copyright">Updated by: @karinamanoukian</p>
+          <p className="copyright">© crated by: @av_10_99</p>
         </div>
       </section>
     </main>

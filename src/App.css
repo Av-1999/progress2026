@@ -1,0 +1,120 @@
+* {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+  width: 100%;
+  background: #000;
+  color: #fff;
+}
+
+/* FULL SCREEN CENTER */
+.app {
+  min-height: 100svh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* CONTENT */
+.content {
+  width: 100%;
+  max-width: 1200px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  text-align: center;
+}
+
+/* TITLE */
+h1 {
+  font-size: clamp(1.6rem, 4vw, 2.8rem);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* PROGRESS */
+.progress-container {
+  position: relative;
+  width: min(80vw, 400px); /* increased max-width from 320px → 400px */
+  aspect-ratio: 1;
+  transition: transform 0.4s ease;
+}
+
+/* MOBILE TUNING */
+@media (max-width: 480px) {
+  .progress-container {
+    width: min(90vw, 300px); /* increased mobile max-width from 260px → 300px */
+  }
+}
+
+/* HOVER SCALE */
+.progress-container:hover {
+  transform: scale(1.05);
+}
+
+svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+/* CIRCLES */
+circle {
+  fill: none;
+  stroke-width: 16;
+}
+
+.track {
+  stroke: #222;
+}
+
+.indicator {
+  stroke: #6366f1;
+  stroke-linecap: round;
+  transition:
+    stroke-dashoffset 0.6s ease,
+    stroke 0.4s ease;
+}
+
+/* HOVER GLOW */
+.progress-container:hover .indicator {
+  stroke: #818cf8;
+  filter: drop-shadow(0 0 10px rgba(99, 102, 241, 0.8));
+}
+
+/* PERCENT */
+.percentage {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: clamp(2.5rem, 8vw, 4rem); /* increased font size for bigger circle */
+  font-weight: 600;
+  transition: transform 0.4s ease;
+}
+
+/* TEXT FLOAT */
+.progress-container:hover .percentage {
+  transform: scale(1.08);
+}
+
+/* SUBTEXT */
+p {
+  font-size: clamp(0.9rem, 2.5vw, 1rem);
+  color: #aaa;
+}
+
+/* MOBILE TUNING */
+@media (max-width: 480px) {
+  .progress-container {
+    width: min(90vw, 260px);
+  }
+}

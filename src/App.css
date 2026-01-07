@@ -118,3 +118,19 @@ p {
     width: min(90vw, 260px);
   }
 }
+
+/* TIME LEFT */
+.time-left {
+  margin-top: 12px;
+  font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+  color: #ccc;
+  text-align: center;
+}
+
+/* COPYRIGHT */
+copyright {
+  margin-top: 24px;
+  font-size: clamp(0.8rem, 2vw, 1rem);
+  color: #777;
+  text-align: center;
+}

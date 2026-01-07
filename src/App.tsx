@@ -8,20 +8,43 @@ function calculatePercent(): number {
   const now = Date.now();
   const total = END - START;
   const passed = now - START;
-
   return Math.min(Math.max((passed / total) * 100, 0), 100);
+}
+
+function getTimeLeft() {
+  const now = new Date();
+  const end = new Date(END);
+  let diff = end.getTime() - now.getTime();
+
+  const months = Math.floor(diff / (1000 * 60 * 60 * 24 * 30));
+  diff -= months * (1000 * 60 * 60 * 24 * 30);
+
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  diff -= days * (1000 * 60 * 60 * 24);
+
+  const hours = Math.floor(diff / (1000 * 60 * 60));
+  diff -= hours * (1000 * 60 * 60);
+
+  const minutes = Math.floor(diff / (1000 * 60));
+  diff -= minutes * (1000 * 60);
+
+  const seconds = Math.floor(diff / 1000);
+
+  return { months, days, hours, minutes, seconds };
 }
 
 export default function App() {
   const [percent, setPercent] = useState<number>(0);
+  const [timeLeft, setTimeLeft] = useState(getTimeLeft());
 
   useEffect(() => {
     const update = () => {
       setPercent(Number(calculatePercent().toFixed(2)));
+      setTimeLeft(getTimeLeft());
     };
 
     update();
-    const id = setInterval(update, 10_000);
+    const id = setInterval(update, 1000);
     return () => clearInterval(id);
   }, []);
 
@@ -36,12 +59,7 @@ export default function App() {
 
         <div className="progress-container">
           <svg viewBox="0 0 200 200">
-            <circle
-              className="track"
-              cx="100"
-              cy="100"
-              r={radius}
-            />
+            <circle className="track" cx="100" cy="100" r={radius} />
             <circle
               className="indicator"
               cx="100"
@@ -53,9 +71,16 @@ export default function App() {
           </svg>
 
           <div className="percentage">{percent}%</div>
-        </div>
 
-        <p>Time already lived in 2026</p>
+          <div className="time-left">
+            {timeLeft.months}m {timeLeft.days}d {timeLeft.hours}h{" "}
+            {timeLeft.minutes}m {timeLeft.seconds}s
+          </div>
+
+          <p>Time already lived in 2026</p>
+
+          <p className="copyright">© crated by: av_10_99</p>
+        </div>
       </section>
     </main>
   );
